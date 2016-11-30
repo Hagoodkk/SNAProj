@@ -17,9 +17,15 @@ public class SNAPProj {
 		UndirectedGraph<String, DefaultEdge> g = buildGraph(adjMatrix);
 		double[] btwnCArray = calculateBetweenessArray(adjMatrix, g);
 		double[] degreeCArray = calculateDegreeArray(adjMatrix);
-		int[] capitalNodes = new int[5];
+		int[] capitalNodes;
+
+		if (adjMatrix.length <= 1000) capitalNodes = new int[1];
+		else if (adjMatrix.length >= 1001 && adjMatrix.length <= 2000) capitalNodes = new int[2];
+		else if (adjMatrix.length >= 2001 && adjMatrix.length <= 3000) capitalNodes = new int[3];
+		else if (adjMatrix.length >= 3001 && adjMatrix.length <= 4000) capitalNodes = new int[4];
+		else capitalNodes = new int[5];
 		
-		for (int i = 0; i < 5; i ++){
+		for (int i = 0; i < capitalNodes.length; i ++){
 			capitalNodes[i] = (int)(Math.random() * btwnCArray.length-1 + 0);
 		}
 		
